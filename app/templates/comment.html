@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}
+    {{ super() }}
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid comment-body">
+        <div class="col-md-2"></div>
+        <div class="container col-md-8">
+            <h2>Pitch</h2>
+            <div class="card">
+                <div class="card-body">
+                    {{ pitch_content.pitch }}
+                </div>
+            </div>
+            <hr>
+            <h2>Comments</h2>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Add comment</h3>
+                </div>
+                <div class="card-body">
+                    {{ wtf.quick_form(comment_form) }}
+                </div>
+            </div>
+            <hr>
+            <h2>Previous Comments</h2>
+            <div class="container-fluid comments">
+                {% for cmnt in comments %}
+                <div class="card">
+                    <div class="card-body">
+                      {{ cmnt.comment | truncate(30) }}
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-2"></div>        
+    </div>
+{% endblock %}

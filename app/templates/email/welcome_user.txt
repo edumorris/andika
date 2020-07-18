@@ -1,0 +1,9 @@
+Hello {{ user.username }},
+
+Welcome to Andika.
+
+Your registration has been completed successfully. 
+
+Register to our platform to get more functionality. Submit blogs. Get feedback.
+
+Thank you.

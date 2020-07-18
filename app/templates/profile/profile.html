@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+    <hr>
+    <div class="container">
+        <div class="row">
+            <!-- Username display -->
+            <div class="col-md-4 user-display">
+                <h3>{{ user.username | capitalize }}</h3>
+
+                <!-- User bio -->
+                {% if user.email %}
+                    <p>{{ user.email }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Pitches Uploaded-->
+    <div class="container-fluid">
+        {% for a_pitch in pitch_data %}
+        <div class="card">
+            <div class="card-body">
+              {{ a_pitch.pitch | truncate(30) }}
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+{% endblock %}

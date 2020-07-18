@@ -1,0 +1,15 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    {{ simplemde.css}}
+    {{ simplemde.js }}
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+{% endblock %}
+
+<!-- Navbar -->
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}

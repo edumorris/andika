@@ -1,0 +1,21 @@
+.user-display {
+    float: right;
+}
+
+.comment-body {
+    max-height: 100vh;
+}
+
+.comments {
+    overflow-y: scroll !important;
+}
+
+.link-btns {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    font-weight: bold;
+}
+
+.blog-btns {
+    color: white !important;
+}
