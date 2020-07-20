@@ -34,18 +34,23 @@ class User(UserMixin, db.Model):
 class Blog(db.Model):
     __tablename__="blogs"
     blog_id = db.Column(db.Integer, primary_key = True)
+    blog_title = db.Column(db.String(255))
     blog = db.Column(db.String())
-    category = db.Column(db.String(255))
+    tags = db.Column(db.String(1000))
     upvotes = db.Column(db.Integer)
     downvote = db.Column(db.Integer)
     submitted_by = db.Column(db.Integer, db.ForeignKey("users.id"))
     comments = db.relationship('Comment', backref = 'blog_comment', lazy = "dynamic")
 
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
 class Comment(db.Model):
     __tablename__="comments"
     comm_id = db.Column(db.Integer, primary_key = True)
     comment = db.Column(db.String(10000))
-    for_pitch = db.Column(db.Integer, db.ForeignKey("blogs.blog_id"))
+    for_blog = db.Column(db.Integer, db.ForeignKey("blogs.blog_id"))
     submitted_by = db.Column(db.Integer, db.ForeignKey("users.id"))
     submission_date = db.Column(db.DateTime,default=datetime.utcnow)
 

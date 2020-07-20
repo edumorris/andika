@@ -6,6 +6,7 @@ from flask_login import login_required
 from .forms import BlogForm, CommentForm
 from .. import db
 import os
+import markdown2
 
 # Main page
 @main.route('/')
@@ -31,43 +32,47 @@ def favicon():
 
 
 
-@main.route('/pitch/comment/new/<user>/<int:id>', methods = ['GET', 'POST'])
+@main.route('/blog/comment/new/<user>/<int:id>', methods = ['GET', 'POST'])
 @login_required
 def comment(id, user):
     form = CommentForm()
 
-    pitch_content = Pitch.query.filter_by(pitch_id = id).first()
+    blog_content = Blog.query.filter_by(blog_id = id).first()
 
-    comments = Comment.query.filter_by(for_pitch = id).all()
+    comments = Comment.query.filter_by(for_blog = id).all()
+
+    title = blog_content.blog_title
 
     if form.validate_on_submit():
-        users_comment = Comment(comment = form.comment.data, for_pitch = id, submitted_by = user)
+        users_comment = Comment(comment = form.comment.data, for_blog = id, submitted_by = user)
 
         db.session.add(users_comment)
         db.session.commit()
 
         flash("Comment added successfully!")
-        return redirect(url_for('main.comment', id = pitch_content.pitch_id, user = user))
+        return redirect(url_for('main.comment', id = blog_content.blog_id, user = user, title = title))
     
-    return render_template('comment.html', comment_form = form, pitch_content = pitch_content, comments = comments)
+    return render_template('comment.html', comment_form = form, blog_content = blog_content, comments = comments)
 
-@main.route('/pitch/<uname>/new/', methods = ['GET', 'POST'])
+@main.route('/blog/new/<uname>/', methods = ['GET', 'POST'])
 @login_required
 def new_blog(uname):
     form = BlogForm()
+
+    if uname is None:
+        return redirect(url_for('auth.login'))
 
     if form.validate_on_submit():
         user = User.query.filter_by(username = uname).first()
 
         # Submitting the data
-        pitch_data = Pitch(pitch = form.pitch.data, category = form.category.data, upvotes  = 0, downvote = 0, submitted_by = user.id)
+        blog_data = Blog(blog_title = form.title.data, blog = form.blog.data, tags = form.tags.data, upvotes  = 0, downvote = 0, submitted_by = user.id)
 
-        db.session.add(pitch_data)
-        db.session.commit()
+        blog_data.save_blog()
 
         return redirect(url_for('main.index'))
 
-    return render_template('pitch.html', uname=uname, pitch_form = form)
+    return render_template('blog.html', uname=uname, blog_form = form)
 
 @main.route('/user/<uname>')
 @login_required
@@ -75,36 +80,36 @@ def profile(uname):
     user = User.query.filter_by(username = uname).first()
     user_id = user.id
 
-    # Getting pitch by users
+    # Getting blog by users
     # user_id = User.query.filter_by(id = user.id).first()
-    pitch_data = Pitch.query.filter_by(submitted_by = user_id).all()
+    blog_data = Blog.query.filter_by(submitted_by = user_id).all()
 
     if user is None:
         abort(404)
         
     
-    return render_template("profile/profile.html", user = user, pitch_data = pitch_data)
+    return render_template("profile/profile.html", user = user, blog_data = blog_data)
 
-@main.route('/pitch/<int:id>/upvote', methods = ['GET', 'POST'])
+@main.route('/blog/<int:id>/upvote', methods = ['GET', 'POST'])
 def upvote(id):
-    pitch = Pitch.query.filter_by(pitch_id = id).first()
+    pitch = Blog.query.filter_by(blog_id = id).first()
 
-    upvote = pitch.upvotes
+    upvote = blog.upvotes
     new_upvotes = upvote + 1
 
-    new_pitch = Pitch.query.filter_by(pitch_id = id).update({"upvotes": new_upvotes})
+    new_blog = Blog.query.filter_by(blog_id = id).update({"upvotes": new_upvotes})
     db.session.commit()
 
     return redirect(url_for('main.index'))
 
-@main.route('/pitch/<int:id>/downvote', methods = ['GET', 'POST'])
+@main.route('/blog/<int:id>/downvote', methods = ['GET', 'POST'])
 def downvote(id):
-    pitch = Pitch.query.filter_by(pitch_id = id).first()
+    blog = Blog.query.filter_by(blog_id = id).first()
 
-    downvote = pitch.downvote
+    downvote = blog.downvote
     new_downvote = downvote + 1
 
-    new_pitch = Pitch.query.filter_by(pitch_id = id).update({"downvote": new_downvote})
+    new_blog = Blog.query.filter_by(blog_id = id).update({"downvote": new_downvote})
     db.session.commit()
 
     return redirect(url_for('main.index'))

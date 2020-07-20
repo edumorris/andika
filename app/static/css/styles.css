@@ -1,3 +1,7 @@
+a {
+    color: #3500FF;
+}
+
 .user-display {
     float: right;
 }
@@ -59,4 +63,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.blog-content {
+    max-height: 700px;
+    overflow-y: scroll;
+}
+
+.blog-comments {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.blog-display {
+    box-shadow: 1px 2px black;
 }

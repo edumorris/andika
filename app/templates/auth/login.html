@@ -13,7 +13,7 @@
             {% endfor %}
             <!-- Login Form -->
             {{ wtf.quick_form(login_form)}}
-            <a href="{{url_for('auth.register')}}" style="float: right"Sign Up</a>
+            <a href="{{url_for('auth.register')}}" style="float: right; color: #FF3500;">Don't have an account? Sign Up here.</a>
         </div>
     </div>
 {% endblock %}
