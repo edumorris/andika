@@ -7,6 +7,11 @@
 {% endblock %}
 
 {% block content %}
+<head>
+    <script>
+        alert("Welcome to Andika! Kindly login to avoid page functionality errors.")
+    </script>
+</head>
 
 <container class="container-fluid">
 
@@ -16,31 +21,62 @@
     <hr>
 
     <div class="container-fluid">
-        {%for oneItem in blog %}
-        <div class="card blog-display">
-            <div class="card-header text-center font-weight-bold text-capitalize">
-                {{ oneItem.blog_title }}
-            </div>
-            <div class="card-body">
-                <p class="card-text text-center">{{oneItem.blog | truncate(250) }}</p>
-                <div class="card-footer">
-                    <span class="text-left" style="float: left;">
-                        <a href="{{url_for('main.comment', user = current_user.id, id=oneItem.blog_id)}}" class="btn btn-link" style="background-color: #FF3500; color: white !important;">View Article</i></a>
-                    </span>
-                    <span class="text-right" style="float: right;">
-                        {{ oneItem.upvotes }}
-                        <a href="#" style="color: green"
-                            class="btn btn-light"><i class="fas fa-thumbs-up"></i></a>
-                        &nbsp;|&nbsp;
-                        {{ oneItem.downvote}}
-                        <a href="#" style="color: red;"
-                            class="btn btn-light"><i class="fas fa-thumbs-down"></i></a>
-                        &nbsp;
-                    </span>
+        <div class="container">
+            <div class="latest-blogs">
+                <div class="most-recent">
+                    <h2>Latest</h2>
+                    <div class="card">
+                        <div class="card-header text-center font-weight-bold text-capitalize">
+                            {{blog_latest.blog_title}}
+                        </div>
+                        <div class="card-body">
+                          {{blog_latest.blog | truncate(150)}}
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{url_for('main.comment', user = current_user.id, id=blog_latest.blog_id)}}" class="btn" style="background-color: #FF3500; color: white !important;">View</a>
+                        </div>
+                      </div>
+                </div>
+                <div class="other-recent">
+                    <h2>Most Recent</h2>
+                    <ul>
+                        {% for blog in latest_blog %}
+                            <li><a href="">{{ blog.blog_title | truncate(5) }}</a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
-        {% endfor %}
+        <hr>
+        <h1 class="text-center">Browse Blogs</h1>
+        <hr>
+        <div class="blog-disp">        
+            {%for oneItem in blog %}
+                <div class="card blog-display">
+                    <div class="card-header text-center font-weight-bold text-capitalize">
+                        {{ oneItem.blog_title }}
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-center">{{oneItem.blog | truncate(250) }}</p>
+                        <div class="card-footer">
+                            <span class="text-left" style="float: left;">
+                                <a href="{{url_for('main.comment', user = current_user.id, id=oneItem.blog_id)}}" class="btn btn-link" style="background-color: #FF3500; color: white !important;">View Article</i></a>
+                            </span>
+                            <span class="text-right" style="float: right;">
+                                {{ oneItem.upvotes }}
+                                <a href="#" style="color: green"
+                                    class="btn btn-light"><i class="fas fa-thumbs-up"></i></a>
+                                &nbsp;|&nbsp;
+                                {{ oneItem.downvote}}
+                                <a href="#" style="color: red;"
+                                    class="btn btn-light"><i class="fas fa-thumbs-down"></i></a>
+                                &nbsp;
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </container>
 {% endblock %}

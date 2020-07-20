@@ -7,6 +7,7 @@ from .forms import BlogForm, CommentForm
 from .. import db
 import os
 import markdown2
+from sqlalchemy import desc
 
 # Main page
 @main.route('/')
@@ -17,12 +18,16 @@ def index():
 
     blog = Blog.query.all()
 
+    blog_latest = Blog.query.order_by(desc(Blog.blog_id)).first() # Most Recent Blogs
+
+    latest_blogs = Blog.query.order_by(desc(Blog.blog_id)).all()
+
     # Getting random quote
     random_quote = get_quote()
 
     title = 'Andika'
 
-    return render_template('index.html', blog = blog, quote_store = random_quote, title = title)
+    return render_template('index.html', blog = blog, blog_latest = blog_latest, latest_blogs = latest_blogs, quote_store = random_quote, title = title)
 
 '''
 @main.route('/favicon.ico')
