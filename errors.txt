@@ -1,0 +1,100 @@
+2020-07-20T17:28:13.029995+00:00 app[web.1]: pool.logger.debug("Error on connect(): %s", e)
+2020-07-20T17:28:13.029995+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+2020-07-20T17:28:13.029995+00:00 app[web.1]: exc_value, with_traceback=exc_tb,
+2020-07-20T17:28:13.029995+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
+2020-07-20T17:28:13.029995+00:00 app[web.1]: raise exception
+2020-07-20T17:28:13.029996+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 656, in __connect
+2020-07-20T17:28:13.029996+00:00 app[web.1]: connection = pool._invoke_creator(self)
+2020-07-20T17:28:13.029996+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+2020-07-20T17:28:13.029996+00:00 app[web.1]: return dialect.connect(*cargs, **cparams)
+2020-07-20T17:28:13.029996+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 493, in connect
+2020-07-20T17:28:13.029997+00:00 app[web.1]: return self.dbapi.connect(*cargs, **cparams)
+2020-07-20T17:28:13.029997+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/psycopg2/__init__.py", line 127, in connect
+2020-07-20T17:28:13.029997+00:00 app[web.1]: conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+2020-07-20T17:28:13.029998+00:00 app[web.1]: psycopg2.OperationalError: could not connect to server: Connection refused
+2020-07-20T17:28:13.029998+00:00 app[web.1]: Is the server running on host "localhost" (127.0.0.1) and accepting
+2020-07-20T17:28:13.029998+00:00 app[web.1]: TCP/IP connections on port 5432?
+2020-07-20T17:28:13.029998+00:00 app[web.1]: 
+2020-07-20T17:28:13.029998+00:00 app[web.1]: 
+2020-07-20T17:28:13.029999+00:00 app[web.1]: The above exception was the direct cause of the following exception:
+2020-07-20T17:28:13.029999+00:00 app[web.1]: 
+2020-07-20T17:28:13.029999+00:00 app[web.1]: Traceback (most recent call last):
+2020-07-20T17:28:13.030000+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+2020-07-20T17:28:13.030000+00:00 app[web.1]: response = self.full_dispatch_request()
+2020-07-20T17:28:13.030000+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+2020-07-20T17:28:13.030000+00:00 app[web.1]: rv = self.handle_user_exception(e)
+2020-07-20T17:28:13.030001+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+2020-07-20T17:28:13.030001+00:00 app[web.1]: reraise(exc_type, exc_value, tb)
+2020-07-20T17:28:13.030001+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+2020-07-20T17:28:13.030001+00:00 app[web.1]: raise value
+2020-07-20T17:28:13.030001+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+2020-07-20T17:28:13.030002+00:00 app[web.1]: rv = self.dispatch_request()
+2020-07-20T17:28:13.030002+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+2020-07-20T17:28:13.030002+00:00 app[web.1]: return self.view_functions[rule.endpoint](**req.view_args)
+2020-07-20T17:28:13.030002+00:00 app[web.1]: File "/app/app/main/views.py", line 19, in index
+2020-07-20T17:28:13.030003+00:00 app[web.1]: blog = Blog.query.all()
+2020-07-20T17:28:13.030003+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3341, in all
+2020-07-20T17:28:13.030003+00:00 app[web.1]: return list(self)
+2020-07-20T17:28:13.030003+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3503, in __iter__
+2020-07-20T17:28:13.030004+00:00 app[web.1]: return self._execute_and_instances(context)
+2020-07-20T17:28:13.030008+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3525, in _execute_and_instances
+2020-07-20T17:28:13.030009+00:00 app[web.1]: querycontext, self._connection_from_session, close_with_result=True
+2020-07-20T17:28:13.030009+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3540, in _get_bind_args
+2020-07-20T17:28:13.030009+00:00 app[web.1]: mapper=self._bind_mapper(), clause=querycontext.statement, **kw
+2020-07-20T17:28:13.030009+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3518, in _connection_from_session
+2020-07-20T17:28:13.030009+00:00 app[web.1]: conn = self.session.connection(**kw)
+2020-07-20T17:28:13.030010+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1141, in connection
+2020-07-20T17:28:13.030010+00:00 app[web.1]: execution_options=execution_options,
+2020-07-20T17:28:13.030010+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1147, in _connection_for_bind
+2020-07-20T17:28:13.030010+00:00 app[web.1]: engine, execution_options
+2020-07-20T17:28:13.030011+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 433, in _connection_for_bind
+2020-07-20T17:28:13.030011+00:00 app[web.1]: conn = bind._contextual_connect()
+2020-07-20T17:28:13.030011+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2305, in _contextual_connect
+2020-07-20T17:28:13.030011+00:00 app[web.1]: self._wrap_pool_connect(self.pool.connect, None),
+2020-07-20T17:28:13.030012+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2343, in _wrap_pool_connect
+2020-07-20T17:28:13.030012+00:00 app[web.1]: e, dialect, self
+2020-07-20T17:28:13.030013+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1585, in _handle_dbapi_exception_noconnection
+2020-07-20T17:28:13.030013+00:00 app[web.1]: sqlalchemy_exception, with_traceback=exc_info[2], from_=e
+2020-07-20T17:28:13.030013+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
+2020-07-20T17:28:13.030013+00:00 app[web.1]: raise exception
+2020-07-20T17:28:13.030014+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 2339, in _wrap_pool_connect
+2020-07-20T17:28:13.030014+00:00 app[web.1]: return fn()
+2020-07-20T17:28:13.030015+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 364, in connect
+2020-07-20T17:28:13.030015+00:00 app[web.1]: return _ConnectionFairy._checkout(self)
+2020-07-20T17:28:13.030015+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 778, in _checkout
+2020-07-20T17:28:13.030015+00:00 app[web.1]: fairy = _ConnectionRecord.checkout(pool)
+2020-07-20T17:28:13.030016+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 495, in checkout
+2020-07-20T17:28:13.030016+00:00 app[web.1]: rec = pool._do_get()
+2020-07-20T17:28:13.030016+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 140, in _do_get
+2020-07-20T17:28:13.030017+00:00 app[web.1]: self._dec_overflow()
+2020-07-20T17:28:13.030017+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+2020-07-20T17:28:13.030017+00:00 app[web.1]: exc_value, with_traceback=exc_tb,
+2020-07-20T17:28:13.030017+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
+2020-07-20T17:28:13.030018+00:00 app[web.1]: raise exception
+2020-07-20T17:28:13.030018+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/impl.py", line 137, in _do_get
+2020-07-20T17:28:13.030018+00:00 app[web.1]: return self._create_connection()
+2020-07-20T17:28:13.030018+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 309, in _create_connection
+2020-07-20T17:28:13.030019+00:00 app[web.1]: return _ConnectionRecord(self)
+2020-07-20T17:28:13.030019+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 440, in __init__
+2020-07-20T17:28:13.030019+00:00 app[web.1]: self.__connect(first_connect_check=True)
+2020-07-20T17:28:13.030019+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+2020-07-20T17:28:13.030019+00:00 app[web.1]: pool.logger.debug("Error on connect(): %s", e)
+2020-07-20T17:28:13.030019+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 69, in __exit__
+2020-07-20T17:28:13.030020+00:00 app[web.1]: exc_value, with_traceback=exc_tb,
+2020-07-20T17:28:13.030020+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
+2020-07-20T17:28:13.030020+00:00 app[web.1]: raise exception
+2020-07-20T17:28:13.030020+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/pool/base.py", line 656, in __connect
+2020-07-20T17:28:13.030020+00:00 app[web.1]: connection = pool._invoke_creator(self)
+2020-07-20T17:28:13.030021+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+2020-07-20T17:28:13.030021+00:00 app[web.1]: return dialect.connect(*cargs, **cparams)
+2020-07-20T17:28:13.030021+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 493, in connect
+2020-07-20T17:28:13.030021+00:00 app[web.1]: return self.dbapi.connect(*cargs, **cparams)
+2020-07-20T17:28:13.030021+00:00 app[web.1]: File "/app/.heroku/python/lib/python3.6/site-packages/psycopg2/__init__.py", line 127, in connect
+2020-07-20T17:28:13.030022+00:00 app[web.1]: conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+2020-07-20T17:28:13.030025+00:00 app[web.1]: sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) could not connect to server: Connection refused
+2020-07-20T17:28:13.030025+00:00 app[web.1]: Is the server running on host "localhost" (127.0.0.1) and accepting
+2020-07-20T17:28:13.030025+00:00 app[web.1]: TCP/IP connections on port 5432?
+2020-07-20T17:28:13.030025+00:00 app[web.1]: 
+2020-07-20T17:28:13.030025+00:00 app[web.1]: (Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-07-20T17:28:13.031205+00:00 app[web.1]: 10.29.126.3 - - [20/Jul/2020:17:28:13 +0000] "GET / HTTP/1.1" 500 290 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36"
+2020-07-20T17:28:13.034725+00:00 heroku[router]: at=info method=GET path="/" host=andiwrite.herokuapp.com request_id=604c9435-9df0-433e-aecd-1a6341041d0c fwd="102.2.140.49" dyno=web.1 connect=0ms service=67ms status=500 bytes=470 protocol=https
