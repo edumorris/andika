@@ -1,9 +1,11 @@
 from flask import render_template, request, redirect, url_for, abort, flash, send_from_directory
 from . import main
-from ..models import Comment, User, Blog
+from ..models import Comment, User, Blog, Quotes
+from ..requests import get_quote
 from flask_login import login_required
 from .forms import BlogForm, CommentForm
 from .. import db
+import os
 
 # Main page
 @main.route('/')
@@ -14,11 +16,18 @@ def index():
 
     blog = Blog.query.all()
 
-    return render_template('index.html', blog = blog)
+    # Getting random quote
+    random_quote = get_quote()
 
+    title = 'Andika'
+
+    return render_template('index.html', blog = blog, quote_store = random_quote, title = title)
+
+'''
 @main.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
+'''
 
 
 

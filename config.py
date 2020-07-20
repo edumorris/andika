@@ -4,7 +4,6 @@ class Config:
     '''
     General configparent class
     '''
-
     SECRET_KEY = os.environ.get('SECRET_KEY') # k0ccMLjL5Eg2IzrpMb2zmfVLW6tUUYZA
 
     # Email configuration

@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
 
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
 {% block content %}
 
 <container class="fluid">
-    <h1 class="text-center">Andika</h1>
+
+    <div class="random-quote text-center">
+        ~ {{ quote_store }} ~
+    </div>
+    <hr>
+
     <div class="container-fluid">
         {%for oneItem in blog %}
         <div class="card">
@@ -12,14 +22,17 @@
                 <p class="card-text text-center">{{oneItem.blog}}</p>
                 <div class="card-footer">
                     <span class="text-left" style="float: left;">
-                        <a href="{{url_for('main.comment', user = current_user.id, id=oneItem.pitch_id)}}" class=""><i class="fas fa-comment"></i></a>
+                        <a href="{{url_for('main.comment', user = current_user.id, id=oneItem.pitch_id)}}" class=""><i
+                                class="fas fa-comment"></i></a>
                     </span>
                     <span class="text-right" style="float: right;">
                         {{ oneItem.upvotes }}
-                        <a href="{{url_for('main.upvote', id=oneItem.pitch_id)}}" style="color: green" class="btn btn-light"><i class="fas fa-thumbs-up"></i></a>
+                        <a href="{{url_for('main.upvote', id=oneItem.pitch_id)}}" style="color: green"
+                            class="btn btn-light"><i class="fas fa-thumbs-up"></i></a>
                         &nbsp;|&nbsp;
                         {{ oneItem.downvote}}
-                        <a href="{{url_for('main.downvote', id=oneItem.pitch_id)}}" style="color: red;" class="btn btn-light"><i class="fas fa-thumbs-down"></i></a>
+                        <a href="{{url_for('main.downvote', id=oneItem.pitch_id)}}" style="color: red;"
+                            class="btn btn-light"><i class="fas fa-thumbs-down"></i></a>
                         &nbsp;
                     </span>
                 </div>

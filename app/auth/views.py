@@ -34,7 +34,7 @@ def login():
         
         flash('Invalid username or password')
     
-    title = "Pitch Login"
+    title = "Andika Login"
     return render_template('auth/login.html', login_form = login_form, title = title)
 
 @auth.route('/logout')

@@ -3,8 +3,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <div class="form login-form">
             <!--Flash message-->
             {% for message in get_flashed_messages() %}
                 <div class="alert alert-danger">
@@ -14,8 +13,7 @@
             {% endfor %}
             <!-- Login Form -->
             {{ wtf.quick_form(login_form)}}
-            <a href="{{url_for('auth.register')}}">Sign Up</a>
+            <a href="{{url_for('auth.register')}}" style="float: right"Sign Up</a>
         </div>
-        <div class="col-md-2"></div>
     </div>
 {% endblock %}

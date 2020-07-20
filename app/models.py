@@ -48,3 +48,10 @@ class Comment(db.Model):
     for_pitch = db.Column(db.Integer, db.ForeignKey("blogs.blog_id"))
     submitted_by = db.Column(db.Integer, db.ForeignKey("users.id"))
     submission_date = db.Column(db.DateTime,default=datetime.utcnow)
+
+class Quotes():
+    def __init__(self, id, author, quote, link):
+        self.id = id
+        self.author = author
+        self.quote = quote
+        self.link = link
