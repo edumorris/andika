@@ -18,19 +18,30 @@
         <div class="container">
             <div class="latest-blogs">
                 <div class="most-recent">
-                    <h2>Latest</h2>
-                    <div class="card">
-                        <div class="card-header text-center font-weight-bold text-capitalize">
-                            {{blog_latest.blog_title}}
+                    {% if blog_content %}
+                        <h2>Latest</h2>
+                        <div class="card">
+                            <div class="card-header text-center font-weight-bold text-capitalize">
+                                {{blog_latest.blog_title}}
+                            </div>
+                            <div class="card-body">
+                                {{blog_latest.blog | truncate(150)}}
+                            </div>
+                            <div class="card-footer">
+                                <a href="{{url_for('main.comment', user = current_user.id, id=blog_latest.blog_id)}}"
+                                    class="btn" style="background-color: #FF3500; color: white !important;">View</a>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            {{blog_latest.blog | truncate(150)}}
+                    {% else %}
+                        <div class="container">
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                  <h1 class="display-3">New App!</h1>
+                                  <p class="lead">Enter Blog to initialize app</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <a href="{{url_for('main.comment', user = current_user.id, id=blog_latest.blog_id)}}"
-                                class="btn" style="background-color: #FF3500; color: white !important;">View</a>
-                        </div>
-                    </div>
+                    {% endif %}
                 </div>
                 <div class="other-recent">
                         <div class="card">
@@ -41,7 +52,7 @@
                                 <ul>
                                     {% for blog in latest_blogs %}
                                         {%- if loop.index < 6 %}
-                                            <li><a href="#"
+                                            <li><a href="{{url_for('main.comment', user = current_user.id, id=blog.blog_id)}}"
                                             style="color: #FF3500;">{{ blog.blog_title  }}</a></li>
                                         {% endif %}
                                     {% endfor %}
