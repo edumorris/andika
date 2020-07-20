@@ -38,6 +38,7 @@ def comment(id, user):
     form = CommentForm()
 
     blog_content = Blog.query.filter_by(blog_id = id).first()
+    format_content = markdown2.markdown(blog_content.blog, extras=["code-friendly", "fenced-code-blocks"])
 
     comments = Comment.query.filter_by(for_blog = id).all()
 
@@ -52,7 +53,7 @@ def comment(id, user):
         flash("Comment added successfully!")
         return redirect(url_for('main.comment', id = blog_content.blog_id, user = user, title = title))
     
-    return render_template('comment.html', comment_form = form, blog_content = blog_content, comments = comments)
+    return render_template('comment.html', comment_form = form, blog_content = blog_content, comments = comments, format_content = format_content)
 
 @main.route('/blog/new/<uname>/', methods = ['GET', 'POST'])
 @login_required

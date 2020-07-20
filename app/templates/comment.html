@@ -17,7 +17,7 @@
                         <h2 class="text-center font-weight-bold text-capitalize">{{ blog_content.blog_title }}</h2>
                     </div>
                     <div class="card-body blog-content">
-                        {{ blog_content.blog }}
+                        {{ format_content|safe }}
                     </div>
                     <div class="card-footer">
                         <span class="text-right" style="float: right;">
