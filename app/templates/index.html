@@ -41,7 +41,7 @@
                                 <ul>
                                     {% for blog in latest_blogs %}
                                         {%- if loop.index < 6 %}
-                                            <li><a href="{{url_for('main.comment', user = current_user.id, id=blog_latest.blog_id)}}"
+                                            <li><a href="{{url_for('main.comment', user = current_user.id, id=blog.blog_id)}}"
                                             style="color: #FF3500;">{{ blog.blog_title  }}</a></li>
                                         {% endif %}
                                     {% endfor %}
