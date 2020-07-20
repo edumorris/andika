@@ -33,9 +33,6 @@ def create_app(config_name):
     mail.init_app(app)
     simple.init_app(app)
 
-    # Static folder
-    app.static_folder = 'static'
-
     # Main blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
