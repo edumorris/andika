@@ -24,15 +24,6 @@ a {
     color: white !important;
 }
 
-.random-quote {
-    padding: 20px;
-    font-size: smaller !important;
-    width: 80%;
-    margin: 5px auto;
-    border: 1px solid #00000030;
-    border-radius: 25px;
-}
-
 .login-form, .registration-form {
     position: absolute;
     padding: 20px;
@@ -70,6 +61,15 @@ a {
 }
 
 /*----- Index Page -----*/
+.random-quote {
+    padding: 20px;
+    font-size: smaller !important;
+    width: 80%;
+    margin: 5px auto;
+    border: 1px solid #00000030;
+    border-radius: 25px;
+}
+
 .latest-blogs {
     display: flex;
     flex-direction: row;
@@ -77,10 +77,15 @@ a {
 
 .latest-blogs .most-recent {
     width: 65%;
+    margin: 20px;
+    border-right: 1.5px solid #00000050;
+    border-bottom: 2.5px solid black;
+    border-radius: 25px;
 }
 
 .latest-blogs .other-recent {
     width: 30%;
+    padding: 10px;
 }
 
 .blog-disp {
@@ -89,11 +94,12 @@ a {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .blog-display {
     box-shadow: 0px 10px 19px 5px rgba(0,0,0,0.75);
-    width: 400px;
+    width: 350px;
     margin: 15px;
 }
 
@@ -111,4 +117,14 @@ a {
 .comment-body {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+/*-----Post Blog Page------*/
+.pst-blog btn {
+    background-color: #FF3500 !important;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;   
 }
