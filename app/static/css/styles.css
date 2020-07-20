@@ -46,12 +46,16 @@ a {
     background: #FF350005;
 }
 
-.login-form .btn {
+.login-form .btn,
+.comment-form .btn  {
     width: auto;
     text-align: center;
     background-color: #FF3500 !important;
     border: none;
     outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .registration-form .btn {
@@ -77,4 +81,9 @@ a {
 
 .blog-display {
     box-shadow: 1px 2px black;
+}
+
+.comment-body {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

@@ -14,7 +14,7 @@
             <div class="container col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">{{ blog_content.blog_title }}</h2>
+                        <h2 class="text-center font-weight-bold text-capitalize">{{ blog_content.blog_title }}</h2>
                     </div>
                     <div class="card-body blog-content">
                         {{ blog_content.blog }}
@@ -36,12 +36,12 @@
                             <div class="card-header">
                                 <h3>Add comment</h3>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body comment-form">
                                 {{ wtf.quick_form(comment_form) }}
                             </div>
                             <div class="card-footer blog-comments">
                                 <h2>Previous Comments</h2>
-                                <div class="container-fluid comments">
+                                <div class="container-fluid comments" style="margin-bottom: 20px;">
                                     {% for cmnt in comments %}
                                         <div class="card">
                                             <div class="card-body">
