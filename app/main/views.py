@@ -11,7 +11,6 @@ from sqlalchemy import desc
 
 # Main page
 @main.route('/')
-@login_required
 def index():
     '''
     Homepage
