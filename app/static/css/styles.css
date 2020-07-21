@@ -120,7 +120,7 @@ a {
 }
 
 /*-----Post Blog Page------*/
-.pst-blog btn {
+.pst-blog .btn {
     background-color: #FF3500 !important;
     border: none;
     outline: none;

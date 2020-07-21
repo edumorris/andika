@@ -18,7 +18,16 @@
         <div class="container">
             <div class="latest-blogs">
                 <div class="most-recent">
-                    {% if blog_content %}
+                    {% if blog_content is None %}
+                        <div class="container">
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                  <h1 class="display-3">New App!</h1>
+                                  <p class="lead">Enter Blog to initialize app</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
                         <h2>Latest</h2>
                         <div class="card">
                             <div class="card-header text-center font-weight-bold text-capitalize">
@@ -30,15 +39,6 @@
                             <div class="card-footer">
                                 <a href="{{url_for('main.comment', user = current_user.id, id=blog_latest.blog_id)}}"
                                     class="btn" style="background-color: #FF3500; color: white !important;">View</a>
-                            </div>
-                        </div>
-                    {% else %}
-                        <div class="container">
-                            <div class="jumbotron jumbotron-fluid">
-                                <div class="container">
-                                  <h1 class="display-3">New App!</h1>
-                                  <p class="lead">Enter Blog to initialize app</p>
-                                </div>
                             </div>
                         </div>
                     {% endif %}
