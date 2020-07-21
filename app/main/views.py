@@ -98,7 +98,7 @@ def profile(uname):
 
 @main.route('/blog/<int:id>/upvote', methods = ['GET', 'POST'])
 def upvote(id):
-    pitch = Blog.query.filter_by(blog_id = id).first()
+    blog = Blog.query.filter_by(blog_id = id).first()
 
     upvote = blog.upvotes
     new_upvotes = upvote + 1
